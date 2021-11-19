@@ -9,9 +9,14 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let wall = WallView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        view.addSubview(wall)
+        wall.backgroundColor = .white
+        wall.frame = view.frame
     }
 
 
