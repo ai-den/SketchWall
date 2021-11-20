@@ -8,6 +8,7 @@
 import UIKit
 
 class WallView: UIView {
+    
     var lines = [[CGPoint]]()
 
     override func draw(_ rect: CGRect) {
@@ -43,5 +44,19 @@ class WallView: UIView {
         lastLine.append(point)
         lines.append(lastLine)
         setNeedsDisplay()
+    }
+    
+    func undoDrawing() {
+        if !lines.isEmpty {
+            lines.removeLast()
+            setNeedsDisplay()
+        }
+    }
+    
+    func clearDrawing() {
+        if !lines.isEmpty {
+            lines.removeAll()
+            setNeedsDisplay()
+        }
     }
 }
