@@ -13,54 +13,19 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SketchWall" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="WallView" customModule="SketchWall" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T1c-b9-jwC" customClass="WallView" customModule="SketchWall" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="414" height="771"/>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                            </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="m7K-Rh-fO3">
-                                <rect key="frame" x="0.0" y="815" width="414" height="47"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtZ-kc-sgE">
-                                        <rect key="frame" x="8" y="8" width="69.5" height="31"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Undo"/>
-                                        <connections>
-                                            <action selector="undoClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Auv-az-olb"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgS-7y-wxu">
-                                        <rect key="frame" x="94.5" y="8" width="69.5" height="31"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Clear"/>
-                                        <connections>
-                                            <action selector="clearClickd:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0xh-dr-5om"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="250"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6x3-kU-WUM">
+                                <rect key="frame" x="194" y="586" width="200" height="110"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="m7K-Rh-fO3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3oo-3w-Hlp"/>
-                            <constraint firstItem="T1c-b9-jwC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="F10-ci-lkm"/>
-                            <constraint firstItem="m7K-Rh-fO3" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="L0B-IT-DTf"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="T1c-b9-jwC" secondAttribute="trailing" id="XmW-Zs-vCD"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="m7K-Rh-fO3" secondAttribute="trailing" id="bc3-gg-cbb"/>
-                            <constraint firstItem="T1c-b9-jwC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hpq-CG-Bxy"/>
-                            <constraint firstItem="m7K-Rh-fO3" firstAttribute="top" secondItem="T1c-b9-jwC" secondAttribute="bottom" id="iwM-v7-TF2"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="clear" destination="dgS-7y-wxu" id="7PN-n4-Pxk"/>
-                        <outlet property="undo" destination="dtZ-kc-sgE" id="qo9-Wr-a4N"/>
-                        <outlet property="wall" destination="T1c-b9-jwC" id="9bC-Le-TOZ"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -68,9 +33,6 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
