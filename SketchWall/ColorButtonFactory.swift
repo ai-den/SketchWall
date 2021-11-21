@@ -28,4 +28,13 @@ class ColorButtonFactory {
         button.addTarget(target, action: action, for: controlEvent)
         return button
     }
+    
+    // TODO: This function is not in used but kept for future usage
+    func createNormalButton(text: String, font: UIFont, forTarget target: Any?, forAction action: Selector, forEvent controlEvent: UIControl.Event) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle(text, for: .normal)
+        button.titleLabel?.font = font
+        button.addTarget(self, action: action, for: controlEvent)
+        return button
+    }
 }

@@ -11,21 +11,23 @@ class ViewController: UIViewController {
 
     let wall = WallView()
     let colorButtonFactory = ColorButtonFactory()
-    let colors: [UIColor] = [.blue, .yellow, .red, .black]
+    let colors: [UIColor] = [.blue, .yellow, .red]
     
     let undoButton: UIButton = {
-        let button = UIButton(type: .roundedRect)
+        let button = UIButton(type: .system)
         button.setTitle("Undo", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.addTarget(self, action: #selector(undoDrawing), for: .touchUpInside)
+        button.setContentCompressionResistancePriority(.required, for: .horizontal)
         return button
     }()
     
     let clearButton: UIButton = {
-        let button = UIButton(type: .roundedRect)
+        let button = UIButton(type: .system)
         button.setTitle("Clear", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.addTarget(self, action: #selector(clearDrawing), for: .touchUpInside)
+        button.setContentCompressionResistancePriority(.required, for: .horizontal)
         return button
     }()
 
@@ -41,6 +43,10 @@ class ViewController: UIViewController {
         wall.clearDrawing()
     }
     
+    @objc fileprivate func sliderValueChanged(sender: UISlider) {
+        let value = sender.value
+        wall.changeLineWidth(to: value)
+    }
     
     fileprivate func setupLayout() {
         wall.backgroundColor = .white
@@ -48,17 +54,39 @@ class ViewController: UIViewController {
         
         var colorButtons = [UIButton]()
         for color in colors {
-            let button = colorButtonFactory.createColorButton(bgColor: color, text: nil, borderColor: .black, width: 1, forTarget: self, forAction: #selector(colorButtonClicked(sender:)), forEvent: .touchUpInside)
+            let button = colorButtonFactory.createColorButton(bgColor: color,
+                                                              text: nil,
+                                                              borderColor: .black,
+                                                              width: 1,
+                                                              forTarget: self,
+                                                              forAction: #selector(colorButtonClicked(sender:)),
+                                                              forEvent: .touchUpInside)
             colorButtons.append(button)
         }
         let colorStack = UIStackView(arrangedSubviews: colorButtons)
         colorStack.distribution = .fillEqually
         
-        
-        let stackView = UIStackView(arrangedSubviews: [undoButton, clearButton, colorStack])
-        stackView.distribution = .fillEqually
-        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+        let slider = UISlider()
+        slider.minimumValue = 1
+        slider.maximumValue = 15
+        slider.isContinuous = true
+        slider.addTarget(self, action: #selector(sliderValueChanged(sender:)), for: .valueChanged)
+     
+        let stackView = UIStackView(arrangedSubviews: [undoButton,
+                                                       clearButton,
+                                                       colorStack,
+                                                       slider])
+        stackView.distribution = .fill
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.spacing = 10.0
+        for (index, _) in stackView.arrangedSubviews.enumerated() {
+            if index != stackView.arrangedSubviews.count - 1 {
+                print(#function)
+                stackView.arrangedSubviews[index].setContentHuggingPriority(.required, for: .horizontal)
+            }
+
+        }
         view.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
